@@ -20,7 +20,7 @@ body {
 
 .city:last-child {
   border: none;
-  margin-bottom: 0;
+  margin-bottom: -2px;
 }
 
 .date {
