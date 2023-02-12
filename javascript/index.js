@@ -23,14 +23,20 @@ function updateTime() {
     );
   }
 }
-
+let cityInterval = null;
 function updateCity(event) {
   let cityTimeZone = event.target.value;
   if (cityTimeZone === "current") {
     cityTimeZone = moment.tz.guess();
   }
   let cityName = cityTimeZone.replace("_", " ").split("/")[1];
+  clearInterval(cityInterval);
 
+  setCityInterval(cityTimeZone, cityName);
+  cityInterval = setInterval(setCityInterval, 1000, cityTimeZone, cityName);
+}
+
+function setCityInterval(cityTimeZone, cityName) {
   let cityTime = moment().tz(cityTimeZone);
   let citiesElement = document.querySelector("#cities");
   citiesElement.innerHTML = `
